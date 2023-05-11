@@ -1,0 +1,7 @@
+
+Adding the transform controls.
+1. import it from Drei
+2. import useRef from react and then create the reference to the object you want to associate the transform controls to
+3. add the ref={cubeRef} to the cube
+4. then you add the <TransformControls /> below the object you want it associated with.
+5. Associate by adding the object attribute <TransformControls obj={cubeRef} />
