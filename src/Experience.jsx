@@ -1,13 +1,29 @@
 import { Text3D, MeshReflectorMaterial, Float, Text, Html ,PivotControls ,TransformControls, OrbitControls } from "@react-three/drei"
 import { useRef, useState } from "react"
 import { DoubleSide } from "three"
-import { useFrame } from "@react-three/fiber"
+import { useFrame, useLoader } from "@react-three/fiber"
 import { useSpring, animated, config } from '@react-spring/three'
-// import Models from "./Models"
 
+import { TextureLoader } from 'three/src/loaders/TextureLoader'
 
 export default function Experience()
 {
+
+  const [colorMap, displacementMap, normalMap, roughnessMap, aoMap] = useLoader(TextureLoader, [
+    'Grass001_1K_Color.jpg',
+    'Grass001_1K_Displacement.jpg',
+    'Grass001_1K_NormalGL.jpg',
+    'Grass001_1K_Roughness.jpg',
+    'Grass001_1K_AmbientOcclusion.jpg'
+  ])
+
+  const [colorMap2, displacementMap2, normalMap2, roughnessMap2, aoMap2] = useLoader(TextureLoader, [
+    'PavingStones092_1K_Color.jpg',
+    'PavingStones092_1K_Displacement.jpg',
+    'PavingStones092_1K_NormalGL.jpg',
+    'PavingStones092_1K_Roughness.jpg',
+    'PavingStones092_1K_AmbientOcclusion.jpg'
+  ])
 
   const cubeRef = useRef() // getting reference to the cube
   const sphere = useRef() // getting reference to the sphere
@@ -54,7 +70,14 @@ export default function Experience()
         {/* House Base */}
         <mesh ref={cubeRef} position={ [0, -.2, 0] } scale={ 2 }>
             <boxGeometry />
-            <meshStandardMaterial color="#C4FFB2"  />
+            <meshStandardMaterial color="#C4FFB2"
+            map={colorMap2}
+            displacementMap={displacementMap2}
+            displacementScale={0.01}
+            normalMap={normalMap2}
+            roughnessMap={roughnessMap2}
+            aoMap={aoMap2}
+            />
         </mesh>
         {/* <TransformControls object={ cubeRef } mode="translate" /> */}
 
@@ -89,12 +112,15 @@ export default function Experience()
         {/* Floor */}
         <mesh position-y={ - 1 } rotation-x={ - Math.PI * 0.5 } scale={ 15} >
             <planeGeometry />
-            <MeshReflectorMaterial
-            resolution={ 512 }
-            blur={ [ 100, 100 ] }
-            mixBlur={ 0.5 }
-            mirror={ 0.6 }
+            <meshStandardMaterial
             color={ '#A4AF69' }
+            map={colorMap}
+            displacementMap={displacementMap}
+            displacementScale={0.05}
+            normalMap={normalMap}
+            roughnessMap={roughnessMap}
+            aoMap={aoMap}
+            side={DoubleSide}
             />
         </mesh>
 
