@@ -63,7 +63,8 @@ export default function Experience()
               <cylinderGeometry
                 args={[1, 1, 2, 3]}
               />
-              <meshStandardMaterial color="#4FBA83" />
+              <meshStandardMaterial color="#4FBA83"
+              />
           </mesh>
 
 
