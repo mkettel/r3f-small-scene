@@ -75,7 +75,7 @@ export default function Experience()
     return <>
         <OrbitControls makeDefault/>
 
-        <directionalLight ref={sun} position={ [ 1, 2, 3 ] } intensity={ 1.5 } castShadow />
+        <pointLight ref={sun} position={ [ 1, 2, 3 ] } intensity={ 2 } distance={200} decay={10} castShadow />
         <ambientLight intensity={ 0.2 } />
 
         {/* Moon */}
@@ -96,6 +96,8 @@ export default function Experience()
           <sphereGeometry args={[1, 32, 32]} />
           <meshStandardMaterial
             color={'yellow'}
+            metalness={0.1}
+            roughness={0.1}
           />
         </animated.mesh>
 
@@ -201,7 +203,7 @@ export default function Experience()
             textAlign="center"
             >
 
-            I love Meehow
+            HAPPY BIRTHDAY CASSIDY
 
           </Text>
         </Float>
