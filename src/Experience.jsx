@@ -186,6 +186,7 @@ export default function Experience()
             roughnessMap={roughnessMap}
             aoMap={aoMap}
             side={DoubleSide}
+            roughness={2}
             />
         </mesh>
 
